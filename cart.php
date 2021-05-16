@@ -33,17 +33,23 @@ include_once 'includes/checkIfAdmin.php' ?>
   </thead>
   <tbody>
   <?php
-  $query = "select * from products";
-  $products = $mysql->query($query);
+//  @todo $cart = $_SESSION['cart'];
+  $cart = [1,7,4,12];
 
-  foreach ($products as $row) {
-    $prod_categs_query = "select pt_category_name from pt_category where pt_category.pt_category_id = " . $row['category'];
+  foreach ($cart as $product_id) {
+
+    $prod_categs_query = "select name, price, category from products where products.product_id=" .$product_id;
+    $product = $mysql->query($prod_categs_query)->fetch_assoc();
+
+
+    $prod_categs_query = "select pt_category_name from pt_category where pt_category.pt_category_id = " . $product['category'];
     $prod_category = $mysql->query($prod_categs_query)->fetch_array();
+
     echo "<tr>";
-    echo "<th scope='row'>" . $row['product_id'] . "</th>";
-    echo "<td>" . $row['name'] . "</td>";
-    echo "<td>" . $row['price'] . "€</td>";
-    echo "<td>" . $prod_category[0] . "</td>"; // @todo get category names from category_id
+    echo "<th scope='row'>$product_id</th>";
+    echo "<td>" . $product['name'] . "</td>";
+    echo "<td>" . $product['price'] . "€</td>";
+    echo "<td>" . $prod_category[0] ."</td>";
     echo "<td>1</td>";
     echo "</tr>";
   }
@@ -51,6 +57,8 @@ include_once 'includes/checkIfAdmin.php' ?>
   ?>
   </tbody>
 </table>
+
+<!-- @todo button proceed to payment -->
 
 
 <!-- Bootstrap Bundle with Popper -->
