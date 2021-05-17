@@ -37,9 +37,6 @@
                       <p class="nav-link">Hello <?php echo $fullname ?>!</p>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="/user-page.php">My profile</a>
-                  </li>
-                  <li class="nav-item">
                       <a class="nav-link" href="/logout.php">Logout</a>
                   </li>
               </ul>
