@@ -1,7 +1,7 @@
 <?php
-include_once 'includes/session.php';
-include_once 'includes/config.php';
-include_once 'includes/checkIfAdmin.php';
+require_once 'includes/session.php';
+require_once 'includes/db-config.php';
+require_once 'includes/checkIfAdmin.php';
 
 ?>
 
@@ -21,7 +21,7 @@ include_once 'includes/checkIfAdmin.php';
     <title>Orders - Admin overview</title>
 </head>
 <body>
-<?php include_once 'includes/navigation.php';
+<?php require_once 'includes/navigation.php';
 if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
   $sql = "SELECT * from orders";
 

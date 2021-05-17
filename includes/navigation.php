@@ -25,9 +25,7 @@
                       <a class="nav-link" href="/admin-dashboard.php"
                          tabindex="-1" aria-disabled="true">Admin dashboard</a>
                   </li>
-              <?php }
-
-              ?>
+              <?php } ?>
             </ul>
 
           <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === TRUE) {
@@ -37,9 +35,6 @@
               <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
                       <p class="nav-link">Hello <?php echo $fullname ?>!</p>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/user-page.php">My profile</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="/logout.php">Logout</a>

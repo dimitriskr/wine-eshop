@@ -1,7 +1,7 @@
 <?php
 
-// include config file
-require_once 'includes/config.php';
+// include db config file
+require_once 'includes/db-config.php';
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -84,8 +84,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // $username, $first_name & $last_name is already set
     $password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 
+    if ($username === 'adminstrator@example.com') {
+      $is_admin = 1;
+    }
+    else {
+      $is_admin = 0;
+    }
+
     // Prepare an insert statement
-    $sql = "INSERT INTO users (username, password, first_name, last_name, is_admin) VALUES ($username, $password, $first_name, $last_name, 0)";
+    $sql = "INSERT INTO users (username, password, first_name, last_name, is_admin) VALUES ($username, $password, $first_name, $last_name, $is_admin)";
 
     // Attempt to execute the prepared statement
     if ($mysql->query($sql)) {
@@ -118,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Register to the system</title>
 </head>
 <body>
-<?php include_once 'includes/navigation.php' ?>
+<?php require_once 'includes/navigation.php' ?>
 
 <div class="wrapper">
     <h2>Sign Up</h2>
