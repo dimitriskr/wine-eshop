@@ -50,7 +50,7 @@ require_once 'includes/db-config.php';
       echo "<th scope='row'>$product_id</th>" . PHP_EOL;
       echo "<td>" . $row['name'] . "</td>" . PHP_EOL;
       echo "<td>" . $row['price'] . "€</td>" . PHP_EOL;
-      echo "<td>" . $prod_category[0] . "</td>" . PHP_EOL; // @todo get category names from category_id
+      echo "<td>" . $prod_category[0] . "</td>" . PHP_EOL;
       echo "<td><button type='button' class='btn btn-info' id='button-add-cart' data-prod-id='$product_id'><a href='#'>Add to cart</a></button> </td>" . PHP_EOL;
       echo "</tr>" . PHP_EOL;
     }
