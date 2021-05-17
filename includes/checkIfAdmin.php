@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once 'db-config.php';
 
 if (isset($_SESSION) && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] && $_SESSION['username'] && $_SESSION['id']) {
   $user_id = $_SESSION['id'];

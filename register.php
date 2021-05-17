@@ -1,7 +1,7 @@
 <?php
 
 // include config file
-require_once 'includes/config.php';
+require_once 'includes/db-config.php';
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Register to the system</title>
 </head>
 <body>
-<?php include_once 'includes/navigation.php' ?>
+<?php require_once 'includes/navigation.php' ?>
 
 <div class="wrapper">
     <h2>Sign Up</h2>

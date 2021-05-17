@@ -1,7 +1,7 @@
 <?php
-include_once 'includes/session.php';
-include_once 'includes/checkIfAdmin.php';
-include_once 'includes/config.php';
+require_once 'includes/session.php';
+require_once 'includes/checkIfAdmin.php';
+require_once 'includes/db-config.php';
 ?>
 
 <!doctype html>
@@ -20,7 +20,7 @@ include_once 'includes/config.php';
     <title>Hello, world!</title>
 </head>
 <body>
-<?php include_once 'includes/navigation.php'; ?>
+<?php require_once 'includes/navigation.php'; ?>
 <h1>All products</h1>
 <p><h4>Here you can select which products you want to purchase</h4></p>
 <table class="table table-hover">

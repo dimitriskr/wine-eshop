@@ -1,6 +1,6 @@
 <?php
-include_once 'includes/session.php';
-include_once 'includes/checkIfAdmin.php' ?>
+require_once 'includes/session.php';
+require_once 'includes/checkIfAdmin.php' ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,7 +17,7 @@ include_once 'includes/checkIfAdmin.php' ?>
     <title>Hello, world!</title>
 </head>
 <body>
-<?php include_once 'includes/navigation.php' ?>
+<?php require_once 'includes/navigation.php' ?>
 <div class="px-4 py-5 my-5 text-center" id="welcome-text">
     <h1>Hello there</h1>
     <p class="lead">Welcome to our wine e-shop website! <br> Here you can find a lot of wine

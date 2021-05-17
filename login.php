@@ -9,7 +9,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 }
 
 // Include config file
-require_once "includes/config.php";
+require_once "includes/db-config.php";
 
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Log in to website</title>
 </head>
 <body>
-<?php include_once 'includes/navigation.php'?>
+<?php require_once 'includes/navigation.php'?>
 
 <div class="wrapper">
     <h2>Login</h2>
