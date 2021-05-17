@@ -64,6 +64,6 @@ require_once 'includes/db-config.php';
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="common.js"></script>
+<script src="js/products.js"></script>
 </body>
 </html>
