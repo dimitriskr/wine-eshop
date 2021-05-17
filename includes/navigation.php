@@ -25,9 +25,7 @@
                       <a class="nav-link" href="/admin-dashboard.php"
                          tabindex="-1" aria-disabled="true">Admin dashboard</a>
                   </li>
-              <?php }
-
-              ?>
+              <?php } ?>
             </ul>
 
           <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === TRUE) {
