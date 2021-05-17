@@ -18,12 +18,23 @@ require_once 'includes/checkIfAdmin.php' ?>
     <title>Cart</title>
 </head>
 <body>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/payments.js"></script>
 <?php require_once 'includes/navigation.php' ?>
 <h2>Your cart</h2>
 <p><h4>Here you can see your cart and proceed to payment when you're
     done</h4></p>
+<div class="alert alert-success" id="success-alert">
+    <strong>Success!</strong>
+    Your order has been submitted.
+</div>
 <?php
 $cart = $_SESSION['cart'];
+$total_price = 0.0;
 
 
 if (count($cart) > 0) {
@@ -51,17 +62,23 @@ if (count($cart) > 0) {
           $prod_category = $mysql->query($prod_categs_query)->fetch_array();
 
           echo "<tr>";
-          echo "<th scope='row'>" . $cart_item['id'] ."</th>";
+          echo "<th scope='row'>" . $cart_item['id'] . "</th>";
           echo "<td>" . $product['name'] . "</td>";
           echo "<td>" . $product['price'] . "€</td>";
           echo "<td>" . $prod_category[0] . "</td>";
-          echo "<td>" . $cart_item['quantity'] ."</td>";
+          echo "<td>" . $cart_item['quantity'] . "</td>";
           echo "</tr>";
+          $total_price += $product['price'] * $cart_item['quantity'];
         }
 
         ?>
+        <tr>
+            <td colspan="5">Total price: <?php echo $total_price ?>€</td>
+        </tr>
         </tbody>
     </table>
+
+
   <?php
 
 }
@@ -72,22 +89,16 @@ else {
 
 ?>
 <div class="text-center">
-    <button type="button" class="btn btn-outline-primary btn-lg"><a
-                href="https://stripe-payments-demo.appspot.com">Pay with
-            card</a></button>
-    <button type="button" class="btn btn-outline-secondary btn-lg"><a
-                href="https://www.paypal.com/uk/home">Pay with Paypal</a>
-    </button>
-    <button type="button" class="btn btn-outline-warning btn-lg"><a
-                href="https://stripe-payments-demo.appspot.com">Pay with
-            cash</a></button>
-    <p>When you click on a button, your order is submitted and you redirect to
+    <button type="button" class="btn btn-outline-primary btn-lg"
+            id="payment-card">Pay with card</button>
+    <button type="button" class="btn btn-outline-secondary btn-lg"
+            id="payment-paypal">Pay with PayPal</button>
+    <button type="button" class="btn btn-outline-warning btn-lg"
+            id="payment-cash">Pay with cash</button>
+    <p>When you click on a button, your order is submitted and you are redirected to
         the payment way</p>
 </div>
 
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-        crossorigin="anonymous"></script>
+
 </body>
 </html>
