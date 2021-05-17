@@ -20,7 +20,9 @@ require_once 'includes/db-config.php';
     <title>Wine products</title>
 </head>
 <body>
-<?php require_once 'includes/navigation.php';?>
+<?php require_once 'includes/navigation.php';
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === TRUE) {
+?>
 <h1>All products</h1>
 <p><h4>Here you can select which products you want to purchase</h4></p>
 <div class="alert alert-success" id="success-alert">
@@ -65,5 +67,10 @@ require_once 'includes/db-config.php';
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/products.js"></script>
+<?php }
+else {
+  echo '<div class="alert alert-danger">You are not allowed to visit this page!</div>';
+
+}?>
 </body>
 </html>

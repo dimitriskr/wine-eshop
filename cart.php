@@ -33,6 +33,8 @@ require_once 'includes/checkIfAdmin.php' ?>
     Your order has been submitted.
 </div>
 <?php
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === TRUE) {
+
 $cart = $_SESSION['cart'];
 $total_price = 0.0;
 
@@ -99,6 +101,11 @@ else {
         the payment way</p>
 </div>
 
+<?php }
+else {
+  echo '<div class="alert alert-danger">You are not allowed to visit this page!</div>';
+
+}?>
 
 </body>
 </html>
