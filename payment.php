@@ -10,9 +10,10 @@ $order_id = random_int(0, 1000);
 foreach ($products as $product) {
   $prod_id = $product['id'];
   $quantity = $product['quantity'];
-  $query = "INSERT INTO db.orders (order_id, user_id, status, products, quantity)
-VALUES ($order_id, $user_id, $status, $prod_id, $quantity);";
-  $mysql->query($query);
+  $stmt = $mysql->prepare("INSERT INTO db.orders (order_id, user_id, status, products, quantity) VALUES (?, ?, ?, ?, ?)");
+  $stmt->bind_param("sssss", $order_id, $user_id, $status, $prod_id, $quantity);
+  $stmt->execute();
+  $stmt->close();
 
 }
 
