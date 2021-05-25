@@ -12,3 +12,4 @@ if (!$mysql || $mysql->connect_errno) {
     die("Error: Could not connect to the database. " . $mysql->connect_error);
 }
 
+$mysql->set_charset('utf8mb4');
