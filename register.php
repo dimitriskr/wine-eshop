@@ -84,23 +84,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // $username, $first_name & $last_name is already set
     $password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 
-    if ($username === 'adminstrator@example.com') {
+    if ($username === 'administrator@example.com') {
       $is_admin = 1;
     }
     else {
       $is_admin = 0;
     }
 
+    $username = $mysql->real_escape_string($username);
     // Prepare an insert statement
-    $sql = "INSERT INTO users (username, password, first_name, last_name, is_admin) VALUES ($username, $password, $first_name, $last_name, $is_admin)";
+//    $sql = "INSERT INTO users (username, password, first_name, last_name, is_admin) VALUES (" . $username . ", $password, $first_name, $last_name, $is_admin)";
+
+    $stmt = $mysql->prepare("INSERT INTO users (username, password, first_name, last_name, is_admin) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $username, $password, $first_name, $last_name, $is_admin);
 
     // Attempt to execute the prepared statement
-    if ($mysql->query($sql)) {
+    if ($stmt->execute()) {
       // User has been created. Redirect to login.
       header('location: login.php');
+      $stmt->close();
     }
     else {
       echo "Oops! Something went wrong. Please try again later.";
+      echo $mysql->error;
     }
   }
 
